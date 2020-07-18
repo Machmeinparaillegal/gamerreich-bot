@@ -105,3 +105,6 @@ dist
 
 # local files
 start.bat
+
+# config
+config.json
