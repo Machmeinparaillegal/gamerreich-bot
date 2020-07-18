@@ -1,0 +1,22 @@
+{
+  "name": "gamerreich-bot",
+  "version": "1.0.0",
+  "description": "Bot for the GamerReich server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Machmeinparaillegal/gamerreich-bot.git"
+  },
+  "author": "Machmeinparaillegal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Machmeinparaillegal/gamerreich-bot/issues"
+  },
+  "homepage": "https://github.com/Machmeinparaillegal/gamerreich-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
+}
