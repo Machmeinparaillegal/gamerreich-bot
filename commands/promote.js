@@ -6,13 +6,14 @@ module.exports = {
     cooldown: 3,
     args: true,
     execute(config, bot, fs, msg, args, discord) {
+        console.log(`${msg.author.tag} tried promoting ${args[0]}`)
         if(!msg.member.hasPermission('ADMINISTRATOR')) return msg.channel.send("You dont have permission to fune")
 
         let findByName = msg.guild.members.cache.find(m => m.user.username.toLowerCase() === args[0].toLowerCase())
 
         let toPromote = findByName != null ? findByName : msg.mentions.members.first()
 
-        if(toPromote === null) return msg.channel.send("I couldnt find the gamer :(")
+        if(toPromote === undefined) return msg.channel.send("I couldnt find the gamer :(")
 
         if(!msg.guild.me.hasPermission("MANAGE_ROLES") || toPromote.roles.highest.comparePositionTo(msg.guild.me.roles.highest) >= 0) return msg.channel.send("I dont have permission for da fune")
 
