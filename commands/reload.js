@@ -5,7 +5,7 @@ module.exports = {
 	aliases: [],
 	cooldown: 5,
   args: true,
-	execute(config, bot, fs, msg, args) {
+	execute(config, bot, fs, msg, args, discord) {
 if(!config.ownerid.includes(msg.author.id)) return msg.channel.send("You do not have permission to use this command!")
     const commandName = args[0].toLowerCase();
     const command = msg.client.commands.get(commandName)

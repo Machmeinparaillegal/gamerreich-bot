@@ -18,11 +18,12 @@ for (const file of commandFiles) {
 bot.on("ready", () =>{
 console.log("This bot has been developed by Mach.")
 console.log(`${bot.user.tag} is online.`);
-bot.user.setPresence({ game: { name: prefix + `help` }, type: 0 });
+//bot.user.setPresence({ game: { name: prefix + `help` }, type: 0 });
+bot.user.setActivity('how to ddox', {type: "WATCHING"})
 });
 
 bot.on("ready", () =>{
-  bot.guilds.forEach(server => console.log(" - " + server.name + "  " + server.id))
+  bot.guilds.cache.forEach(server => console.log(" - " + server.name + "  " + server.id))
 })
 
 bot.on('guildCreate', server => {
@@ -78,7 +79,7 @@ if (timestamps.has(msg.author.id)) {
 }
 
 try {
-			command.execute(config, bot, fs, msg, args);
+			command.execute(config, bot, fs, msg, args, discord);
 
 } catch (error) {
 	console.error(error);

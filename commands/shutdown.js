@@ -5,7 +5,7 @@ module.exports = {
     aliases: ['sd', 'stop'],
     cooldown: 3,
     args: false,
-    execute(config, bot, fs, msg, args) {
+    execute(config, bot, fs, msg, args, discord) {
         const process = require("process")
         if(!config.ownerid.includes(msg.author.id)) return msg.channel.send("You do not have permission to use this command!")
         msg.channel.send("Stopping the bot...")

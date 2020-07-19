@@ -5,7 +5,7 @@ module.exports = {
 	aliases: ['latency'],
 	cooldown: 3,
 	args: false,
-	execute(config, bot, fs, msg, args) {
+	execute(config, bot, fs, msg, args, discord) {
 		//msg.channel.send("Pong!");
 
 async function pping(){

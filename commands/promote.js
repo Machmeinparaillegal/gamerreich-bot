@@ -5,10 +5,10 @@ module.exports = {
     aliases: [],
     cooldown: 3,
     args: true,
-    execute(config, bot, fs, msg, args) {
+    execute(config, bot, fs, msg, args, discord) {
         if(!msg.member.hasPermission('ADMINISTRATOR')) return msg.channel.send("You dont have permission to fune")
 
-        let findByName = msg.guild.members.find(m => m.name.toLowerCase() === args[0].toLowerCase())
+        let findByName = msg.guild.members.cache.find(m => m.user.username.toLowerCase() === args[0].toLowerCase())
 
         let toPromote = findByName != null ? findByName : msg.mentions.members.first()
 
@@ -17,10 +17,11 @@ module.exports = {
         if(!msg.guild.me.hasPermission("MANAGE_ROLES") || toPromote.roles.highest.comparePositionTo(msg.guild.me.roles.highest) >= 0) return msg.channel.send("I dont have permission for da fune")
 
         let oldRole = toPromote.roles.highest
+        let newRole = oldRole != null ? msg.guild.roles.cache.find(r => r.position === oldRole.position + 1) : msg.guild.roles.cache.find(r => r.position === msg.guild.roles.everyone.position + 1)
 
-        let newRole = msg.guild.roles.cache.find(r => r.position === oldRole.position + 1)
+        if(newRole.comparePositionTo(msg.guild.me.roles.highest) >= 0) return msg.channel.send("The new role is above mine :(")
 
-        toPromote.roles.remove(oldRole)
+        oldRole !== msg.guild.roles.everyone ? toPromote.roles.remove(oldRole) : null
 
         toPromote.roles.add(newRole)
 
@@ -29,10 +30,10 @@ module.exports = {
         let logchannel = msg.guild.channels.cache.get("734161666832597002")
 
         let embed = new discord.MessageEmbed()
-            .setAuthor("Promotion", bot.avatarURL())
+            .setAuthor("Promotion", bot.user.avatarURL())
             .setColor(16777215)
-            .setThumbnail(toPromote.avatarURL())
-            .setDescription(`${toPromote.tag} has been promoted to ${newRole.name}`)
+            .setThumbnail(toPromote.user.avatarURL())
+            .setDescription(`${toPromote.user.tag} has been promoted to ${newRole.name}`)
             .setFooter(`By ${msg.author.tag}`, msg.author.avatarURL())
             .setTimestamp()
 
